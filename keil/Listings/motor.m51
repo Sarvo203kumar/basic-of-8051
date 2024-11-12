@@ -1,0 +1,112 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/09/2023  15:34:28  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\robo.obj TO .\Objects\motor PRINT (.\Listings\motor.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\robo.obj (ROBO)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  .\Objects\motor (ROBO)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0066H     UNIT         ?PR?MAIN?ROBO
+            CODE    0866H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\motor (ROBO)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?ROBO
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\motor (ROBO)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ROBO
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  B:0090H.0       PUBLIC        c1
+  B:0090H.1       PUBLIC        c2
+  B:0090H.2       PUBLIC        c3
+  B:0090H.3       PUBLIC        c4
+  B:00A0H.0       PUBLIC        m1
+  B:00A0H.1       PUBLIC        m2
+  B:00A0H.2       PUBLIC        m3
+  B:00A0H.3       PUBLIC        m4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/09/2023  15:34:28  PAGE 2
+
+
+  C:0800H         PUBLIC        main
+  -------         PROC          MAIN
+  C:0800H         LINE#         12
+  C:0800H         LINE#         13
+  C:0800H         LINE#         14
+  C:0810H         LINE#         16
+  C:0810H         LINE#         17
+  C:081CH         LINE#         18
+  C:081CH         LINE#         19
+  C:081CH         LINE#         20
+  C:081CH         LINE#         21
+  C:081CH         LINE#         22
+  C:081CH         LINE#         23
+  C:081EH         LINE#         24
+  C:082AH         LINE#         25
+  C:082CH         LINE#         26
+  C:082EH         LINE#         27
+  C:0830H         LINE#         28
+  C:0832H         LINE#         29
+  C:0834H         LINE#         30
+  C:0840H         LINE#         31
+  C:0840H         LINE#         32
+  C:0842H         LINE#         33
+  C:0844H         LINE#         34
+  C:0844H         LINE#         35
+  C:0844H         LINE#         36
+  C:0846H         LINE#         37
+  C:0852H         LINE#         38
+  C:0854H         LINE#         39
+  C:0856H         LINE#         40
+  C:0858H         LINE#         41
+  C:085AH         LINE#         42
+  C:085CH         LINE#         44
+  C:085CH         LINE#         45
+  C:085EH         LINE#         46
+  C:0860H         LINE#         47
+  C:0862H         LINE#         48
+  C:0864H         LINE#         49
+  C:0864H         LINE#         50
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        ROBO
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0066H BYTE ( 4%) *
+******************************************************************************
+
+Program Size: data=9.0 xdata=0 code=117
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,59 @@
+C51 COMPILER V9.60.7.0   LCDF                                                              11/04/2023 15:52:22 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE LCDF
+OBJECT MODULE PLACED IN .\Objects\lcdf.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcdf.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\lcdf
+                    -.lst) TABS(2) OBJECT(.\Objects\lcdf.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include<Atmal_lcd.h>
+   3          sbit gsen = P1^0;
+   4          sbit buzzer = P1^1;
+   5          sbit value = P1^2;
+   6          void main()
+   7          {
+   8   1        gsen = buzzer = value = 0;
+   9   1        Lcd8_Init();
+  10   1        Lcd8_Display(0x80," Gas sensor     ",16);
+  11   1        Lcd8_Display(0xc0,"    system      ",16);
+  12   1        Delay(65000);Delay(65000);
+  13   1        
+  14   1        while (1)
+  15   1        {
+  16   2          if ( gsen == 1)
+  17   2          {
+  18   3            buzzer == value == 1;
+*** WARNING C275 IN LINE 18 OF lcdf.c: expression with possibly no effect
+  19   3            Lcd8_Display(0x80,"  gas sensor    ",16);   
+  20   3            Lcd8_Display(0x80,"  detecting     ",16);
+  21   3            Delay (65000);  
+  22   3          }
+  23   2          
+  24   2          else 
+  25   2          {
+  26   3            buzzer == value == 0;
+*** WARNING C275 IN LINE 26 OF lcdf.c: expression with possibly no effect
+  27   3            
+  28   3            Lcd8_Display(0x80,"    NO gas      ",16);
+  29   3            Lcd8_Display(0x80,"   detecting    ",16);
+  30   3            
+  31   3          }
+  32   2        }
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    577    ----
+   CONSTANT SIZE    =    102    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      25
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)
