@@ -1,0 +1,169 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    09/30/2023  12:52:54  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE 4 seg.obj TO 4 seg
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  4 seg.obj (4_SEG)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?ULCMP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LILDIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  4 seg (4_SEG)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     000AH     UNIT         ?DT?4_SEG
+            DATA    0012H     0008H     UNIT         _DATA_GROUP_
+            IDATA   001AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     00FFH     UNIT         ?C?LIB_CODE
+            CODE    08FFH     0098H     UNIT         ?PR?_DISPLAY?4_SEG
+            CODE    0997H     008CH     UNIT         ?C_C51STARTUP
+            CODE    0A23H     0039H     UNIT         ?PR?MAIN?4_SEG
+            CODE    0A5CH     0031H     UNIT         ?PR?_DELAY?4_SEG
+            CODE    0A8DH     0015H     UNIT         ?PR?_SDELAY?4_SEG
+            CODE    0AA2H     000DH     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   4 seg (4_SEG)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?4_SEG
+  +--> ?C_INITSEG
+
+?PR?MAIN?4_SEG                 0012H    0004H
+  +--> ?PR?_DISPLAY?4_SEG
+
+?PR?_DISPLAY?4_SEG             0016H    0004H
+  +--> ?PR?_SDELAY?4_SEG
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/30/2023  12:52:54  PAGE 2
+
+
+
+SYMBOL TABLE OF MODULE:  4 seg (4_SEG)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        4_SEG
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  C:0A8DH         PUBLIC        _sdelay
+  C:0A5CH         PUBLIC        _delay
+  B:00A0H.0       PUBLIC        sw1
+  B:00A0H.1       PUBLIC        sw2
+  B:00A0H.2       PUBLIC        sw3
+  B:00A0H.3       PUBLIC        sw4
+  C:0A23H         PUBLIC        main
+  D:0008H         PUBLIC        ch
+  C:08FFH         PUBLIC        _display
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        d
+  -------         DO            
+  D:0005H         SYMBOL        i
+  -------         ENDDO         
+  C:0A5CH         LINE#         12
+  C:0A5CH         LINE#         13
+  C:0A5CH         LINE#         15
+  C:0A67H         LINE#         16
+  C:0A67H         LINE#         17
+  C:0A76H         LINE#         18
+  C:0A85H         LINE#         19
+  C:0A8CH         LINE#         20
+  -------         ENDPROC       _DELAY
+  -------         PROC          _SDELAY
+  D:0007H         SYMBOL        d
+  C:0A8DH         LINE#         22
+  C:0A8DH         LINE#         23
+  C:0A8DH         LINE#         24
+  C:0AA1H         LINE#         25
+  -------         ENDPROC       _SDELAY
+  -------         PROC          _DISPLAY
+  D:0016H         SYMBOL        n
+  C:08FFH         LINE#         27
+  C:0907H         LINE#         28
+  C:0907H         LINE#         29
+  C:0918H         LINE#         30
+  C:091AH         LINE#         31
+  C:091FH         LINE#         32
+  C:0921H         LINE#         34
+  C:0942H         LINE#         35
+  C:0944H         LINE#         36
+  C:0949H         LINE#         37
+  C:094BH         LINE#         39
+  C:096CH         LINE#         40
+  C:096EH         LINE#         41
+  C:0973H         LINE#         42
+  C:0975H         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  09/30/2023  12:52:54  PAGE 3
+
+
+  C:098DH         LINE#         45
+  C:098FH         LINE#         46
+  C:0994H         LINE#         47
+  C:0996H         LINE#         48
+  -------         ENDPROC       _DISPLAY
+  -------         PROC          MAIN
+  -------         DO            
+  D:0012H         SYMBOL        i
+  -------         ENDDO         
+  C:0A23H         LINE#         50
+  C:0A23H         LINE#         51
+  C:0A23H         LINE#         52
+  C:0A2DH         LINE#         54
+  C:0A2DH         LINE#         55
+  C:0A2DH         LINE#         56
+  C:0A3AH         LINE#         57
+  C:0A3DH         LINE#         58
+  C:0A52H         LINE#         59
+  C:0A5AH         LINE#         60
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        4_SEG
+
+  -------         MODULE        ?C?ULDIV
+  C:083CH         PUBLIC        ?C?ULDIV
+  -------         ENDMOD        ?C?ULDIV
+
+  -------         MODULE        ?C?ULCMP
+  C:08CEH         PUBLIC        ?C?ULCMP
+  -------         ENDMOD        ?C?ULCMP
+
+  -------         MODULE        ?C?LILDIDATA
+  C:08E8H         PUBLIC        ?C?LILDIDATA
+  C:08DFH         PUBLIC        ?C?LILDIDATA1
+  C:08E1H         PUBLIC        ?C?LILDIDATA8
+  -------         ENDMOD        ?C?LILDIDATA
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY?4_SEG
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 0123H BYTE (14%) *
+******************************************************************************
+
+Program Size: data=27.0 xdata=0 code=690
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

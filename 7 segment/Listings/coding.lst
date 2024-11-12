@@ -1,0 +1,61 @@
+C51 COMPILER V9.60.0.0   CODING                                                            09/30/2023 15:00:56 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE CODING
+OBJECT MODULE PLACED IN .\Objects\coding.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE coding.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\co
+                    -ding.lst) TABS(2) OBJECT(.\Objects\coding.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<AT89a52.h>
+*** WARNING C318 IN LINE 2 OF coding.c: can't open file 'AT89a52.h'
+   3          
+   4             unsigned char seg [10] = {0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+   5              
+   6             unsigned int i;
+   7             unsigned char x;
+   8            
+   9          
+  10          
+  11          
+  12          void main()
+  13          {    
+  14   1        P0 = 0x00;
+  15   1        
+  16   1        while(1)
+  17   1        { P1^1 = 1;
+*** ERROR C141 IN LINE 17 OF coding.c: syntax error near '=', expected ';'
+  18   2          P1^2 = 0;
+*** ERROR C141 IN LINE 18 OF coding.c: syntax error near '=', expected ';'
+  19   2          P1^3 = 0;
+*** ERROR C141 IN LINE 19 OF coding.c: syntax error near '=', expected ';'
+  20   2          for (x=0;x<10;x++)
+  21   2          {
+  22   3            P0= seg [x];
+  23   3            for (i=0; i<60000;i++);
+  24   3          P1^1 = 0;
+*** ERROR C141 IN LINE 24 OF coding.c: syntax error near '=', expected ';'
+  25   3          P1^2 = 1;
+*** ERROR C141 IN LINE 25 OF coding.c: syntax error near '=', expected ';'
+  26   3          P1^3 = 0;
+*** ERROR C141 IN LINE 26 OF coding.c: syntax error near '=', expected ';'
+  27   3          for (x=0;x<10;x++)
+  28   3          {
+  29   4            P0= seg [x];
+  30   4            for (i=0; i<60000;i++);
+  31   4          P1^1 = 0;
+*** ERROR C141 IN LINE 31 OF coding.c: syntax error near '=', expected ';'
+  32   4          P1^2 = 0;
+*** ERROR C141 IN LINE 32 OF coding.c: syntax error near '=', expected ';'
+  33   4          P1^3 = 1;
+*** ERROR C141 IN LINE 33 OF coding.c: syntax error near '=', expected ';'
+  34   4          for (x=0;x<10;x++)
+  35   4          {
+  36   5            P0= seg [x];
+  37   5            for (i=0; i<60000;i++);
+  38   5          }}} 
+*** ERROR C141 IN LINE 38 OF coding.c: syntax error near '', expected '__asm'
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  10 ERROR(S)

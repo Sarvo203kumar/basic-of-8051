@@ -1,0 +1,86 @@
+C51 COMPILER V9.60.0.0   4_SEG                                                             09/30/2023 12:52:53 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 4_SEG
+OBJECT MODULE PLACED IN 4 seg.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 4 seg.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<reg51.h> 
+   2          #define led P0
+   3          sbit sw1=P2^0;
+   4          sbit sw2=P2^1;
+   5          sbit sw3=P2^2;
+   6          sbit sw4=P2^3;
+   7          unsigned char ch[]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+   8          void delay (int);
+   9          void display (unsigned long int);
+  10          void sdelay (char);
+  11          
+  12          void delay (int d)
+  13          {
+  14   1        unsigned char i;
+  15   1        for(;d>0;d--)
+  16   1        {
+  17   2          for(i=250;i>0;i--);
+  18   2          for(i=248;i>0;i--);
+  19   2        }
+  20   1      }
+  21          
+  22          void sdelay (char d)
+  23          {
+  24   1        for(;d>0;d--);
+  25   1      }
+  26          
+  27          void display (unsigned long int n)
+  28          {
+  29   1        led=ch[n/1000];
+  30   1        sw1=1;
+  31   1        sdelay(30);
+  32   1        sw1=0;
+  33   1        
+  34   1        led=ch[(n/100)%10];
+  35   1        sw2=1;
+  36   1        sdelay(30);
+  37   1        sw2=0;
+  38   1        
+  39   1        led=ch[(n/10)%10];
+  40   1        sw3=1;
+  41   1        sdelay(30);
+  42   1        sw3=0;
+  43   1        
+  44   1        led=ch[n%10];
+  45   1        sw4=1;
+  46   1        sdelay(30);
+  47   1        sw4=0;
+  48   1      }
+  49          
+  50          void main()
+  51          {
+  52   1        unsigned long int i=1;
+  53   1        
+  54   1        while(1)
+  55   1        {
+C51 COMPILER V9.60.0.0   4_SEG                                                             09/30/2023 12:52:53 PAGE 2   
+
+  56   2          i=++i;
+  57   2          display(i);
+  58   2          if(i==9999)
+  59   2            i=0;
+  60   2        }
+  61   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    279    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     10       8
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,4 @@
+"STARTUP.obj",
+"3 sensor.obj" 
+TO "3 sensor" 
+RAMSIZE(256) 

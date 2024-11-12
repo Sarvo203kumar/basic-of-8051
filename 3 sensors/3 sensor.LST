@@ -1,0 +1,115 @@
+C51 COMPILER V9.60.0.0   3_SENSOR                                                          03/20/2023 05:47:02 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE 3_SENSOR
+OBJECT MODULE PLACED IN 3 sensor.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE 3 sensor.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include"smcl_lcd8.h"
+   3          #include"AT_serial.h"
+   4          
+   5          sbit  gas=P1^0;
+   6          sbit   ir=P1^1;
+   7          sbit fire=P1^2;
+   8          sbit   g1=P1^3;
+   9          sbit   i1=P1^4;
+  10          sbit   f1=P1^5;
+  11           unsigned char a,b,i,rcv[5];
+  12          
+  13           void Serial(void) interrupt 4
+  14           {
+  15   1        if(RI)
+  16   1        {
+  17   2          rcv[i]=SBUF;
+  18   2          if(rcv[0]=='*')i++;     
+  19   2          else i=0;
+  20   2          RI=0;
+  21   2        }
+  22   1        }
+  23          void main()
+  24          {
+  25   1        Lcd8_Init();
+  26   1        Serial_Init(9600);
+  27   1        g1==1;i1==1;f1==1;
+*** WARNING C275 IN LINE 27 OF 3 sensor.c: expression with possibly no effect
+*** WARNING C275 IN LINE 27 OF 3 sensor.c: expression with possibly no effect
+*** WARNING C275 IN LINE 27 OF 3 sensor.c: expression with possibly no effect
+  28   1        Lcd8_Display(0x80,"  Home security ",16);
+  29   1          //Lcd8_Display(0xc0,"    System      ",16);
+  30   1         Delay(65000);Delay(65000);
+  31   1        Lcd8_Command(0x01); 
+  32   1        a==0,b==0; Receive(1);
+  33   1      
+  34   1        while(1)
+  35   1        { //Delay(1000);Lcd8_Command(0x01);
+  36   2           a++;   Lcd8_Decimal3(0xcd,b);Lcd8_Decimal3(0xc9,a);
+  37   2        if(i>1)
+  38   2            {
+  39   3              Receive(0);
+  40   3              
+  41   3              if(rcv[1]=='1')     {Serial_Out('1');i=0;Lcd8_Decimal3(0x80,rcv);}       //x && 
+*** WARNING C214 IN LINE 41 OF 3 sensor.c: 'Argument': conversion: pointer to non-pointer
+  42   3              else if(rcv[1]=='2')  {Serial_Out('2');i=0;Lcd8_Display(0x80,"******R 2*******",16);}
+  43   3              else if(rcv[1]=='3')  {Serial_Out('3');i=0;Lcd8_Display(0x80,"******R 3*******",16);}
+  44   3              else if(rcv[1]=='4')  {Serial_Out('4');i=0;Lcd8_Display(0x80,"******R 4*******",16);}
+  45   3              else if(rcv[1]=='5')  
+  46   3              i=0;Receive(1); i=0;
+  47   3            } 
+  48   2          if(!gas)
+  49   2      
+  50   2          {
+  51   3            Delay(1000);//Lcd8_Command(0x01);
+C51 COMPILER V9.60.0.0   3_SENSOR                                                          03/20/2023 05:47:02 PAGE 2   
+
+  52   3            Lcd8_Display(0x80,"******GAS*******",16);
+  53   3            Lcd8_Display(0xc0,"****DETECTED****",16);
+  54   3            Delay(6000);Lcd8_Command(0x01);
+  55   3          }
+  56   2          if(!ir)
+  57   2          {
+  58   3              Delay(1000);//Lcd8_Command(0x01);
+  59   3            Lcd8_Display(0x80,"******THEFT*****",16);
+  60   3            Lcd8_Display(0xc0,"****DETECTED****",16);
+  61   3              Delay(6000);//Lcd8_Command(0x01);
+  62   3          }
+  63   2          if(!fire)
+  64   2          {
+  65   3              Delay(1000);//Lcd8_Command(0x01);
+  66   3            Lcd8_Display(0x80,"******FIRE******",16);
+  67   3            Lcd8_Display(0xc0,"****DETECTED****",16);
+  68   3            Delay(6000);Lcd8_Command(0x01);
+  69   3          }
+  70   2          //else {Lcd8_Display(0x80,"****************",16);
+  71   2              //  Lcd8_Display(0xc0,"****DETECTED****",16);}
+  72   2           if(a>20){a=0;b++;}
+  73   2           if(b>10)
+  74   2          {Serial_Out('#');b=0;}
+  75   2          
+  76   2      
+  77   2        //Serial_Out((speed%1000/100)+0x30);
+  78   2        //Serial_Out((speed%100/10)+0x30);
+  79   2        //Serial_Out((speed%10)+0x30);
+  80   2        //enter();Delay(65000);
+  81   2      
+  82   2        //if(vib)     {Serial_Conout("*d",2);enter();}
+  83   2        //else if(!vib) {Lcd8_Display(0xc0,"ACCIDENT OCC",12);Serial_Conout("*c",2);enter();}
+  84   2        }
+  85   1      }
+  86                        
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1075    ----
+   CONSTANT SIZE    =    136    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8      32
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  4 WARNING(S),  0 ERROR(S)
