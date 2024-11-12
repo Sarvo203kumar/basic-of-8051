@@ -1,0 +1,26 @@
+C51 COMPILER V9.60.7.0   RECIVER                                                           11/18/2023 12:23:52 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE RECIVER
+OBJECT MODULE PLACED IN .\Objects\reciver.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE serial\reciver.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\reciver.lst) TABS(2) OBJECT(.\Objects\reciver.obj)
+
+line level    source
+
+   1          #include<reg.51>
+*** WARNING C318 IN LINE 1 OF serial\reciver.c: can't open file 'reg.51'
+   2          #include<AT_serial.h>
+*** WARNING C318 IN LINE 2 OF serial\reciver.c: can't open file 'AT_serial.h'
+   3          
+   4          void main();
+   5          {
+*** ERROR C141 IN LINE 5 OF serial\reciver.c: syntax error near '{', expected 'hdata'
+   6            Serial_Init(9600);
+*** ERROR C141 IN LINE 6 OF serial\reciver.c: syntax error near '9600', expected 'bit'
+   7            Receive(1);
+*** ERROR C141 IN LINE 7 OF serial\reciver.c: syntax error near '1', expected 'bit'
+   8          }
+*** ERROR C141 IN LINE 8 OF serial\reciver.c: syntax error near '}', expected 'hdata'
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  4 ERROR(S)

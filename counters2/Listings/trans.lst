@@ -1,0 +1,52 @@
+C51 COMPILER V9.60.7.0   TRANS                                                             11/18/2023 12:23:52 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TRANS
+OBJECT MODULE PLACED IN .\Objects\trans.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE serial\trans.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listi
+                    -ngs\trans.lst) TABS(2) OBJECT(.\Objects\trans.obj)
+
+line level    source
+
+   1          #include<reg.51>
+*** WARNING C318 IN LINE 1 OF serial\trans.c: can't open file 'reg.51'
+   2          void trans(unsigned char s[1]);
+   3          void main()
+   4          {
+   5   1        SCON=0x50;
+*** ERROR C202 IN LINE 5 OF serial\trans.c: 'SCON': undefined identifier
+   6   1        TMOD=0x20;
+*** ERROR C202 IN LINE 6 OF serial\trans.c: 'TMOD': undefined identifier
+   7   1        TH1=0xFD;
+*** ERROR C202 IN LINE 7 OF serial\trans.c: 'TH1': undefined identifier
+   8   1        TR1=1;
+*** ERROR C202 IN LINE 8 OF serial\trans.c: 'TR1': undefined identifier
+   9   1        SBUF='  ';
+*** ERROR C202 IN LINE 9 OF serial\trans.c: 'SBUF': undefined identifier
+*** ERROR C101 IN LINE 9 OF serial\trans.c: '' ': invalid character constant
+*** ERROR C101 IN LINE 9 OF serial\trans.c: '';': invalid character constant
+*** ERROR C141 IN LINE 9 OF serial\trans.c: syntax error near '';', expected ';'
+  10   1        while (TI==0);
+*** ERROR C141 IN LINE 10 OF serial\trans.c: syntax error near 'while', expected ';'
+  11   1        TI=0;
+*** ERROR C202 IN LINE 11 OF serial\trans.c: 'TI': undefined identifier
+  12   1        trans(" welcome ");
+  13   1        trans(" bro");
+  14   1        
+  15   1      }
+  16          void trans(unsigned char s[])
+  17          {
+  18   1        unsigned char t;
+  19   1        for(r=0;s[r]!="\0";r++)
+*** ERROR C202 IN LINE 19 OF serial\trans.c: 'r': undefined identifier
+  20   1        {
+  21   2          SBUF=a[r];
+*** ERROR C202 IN LINE 21 OF serial\trans.c: 'SBUF': undefined identifier
+  22   2          while(TI==0);
+*** ERROR C202 IN LINE 22 OF serial\trans.c: 'TI': undefined identifier
+  23   2          TI=0;
+*** ERROR C202 IN LINE 23 OF serial\trans.c: 'TI': undefined identifier
+  24   2        }
+  25   1      }
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  14 ERROR(S)

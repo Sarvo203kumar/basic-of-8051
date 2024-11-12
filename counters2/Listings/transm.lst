@@ -1,0 +1,28 @@
+C51 COMPILER V9.60.7.0   TRANSM                                                            11/18/2023 12:23:53 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TRANSM
+OBJECT MODULE PLACED IN .\Objects\transm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE serial\transm.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\List
+                    -ings\transm.lst) TABS(2) OBJECT(.\Objects\transm.obj)
+
+line level    source
+
+   1          #include<reg.51>
+*** WARNING C318 IN LINE 1 OF serial\transm.c: can't open file 'reg.51'
+   2          #include<AT_serial.h>
+*** WARNING C318 IN LINE 2 OF serial\transm.c: can't open file 'AT_serial.h'
+   3          
+   4          
+   5          void main()
+   6          {
+   7   1        Serial_Init(9600);
+*** WARNING C206 IN LINE 7 OF serial\transm.c: 'Serial_Init': missing function-prototype
+*** ERROR C267 IN LINE 7 OF serial\transm.c: 'Serial_Init': requires ANSI-style prototype
+   8   1        Serial_Conout(" welcome ",,9);
+   9   1        Serial_Conout(" bro ",5);
+  10   1        serial_Out(0x09);serial_Out(0X05);
+  11   1      }
+  12            
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  1 ERROR(S)

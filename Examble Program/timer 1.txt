@@ -1,0 +1,4 @@
+ 
+ TMOD = 0x02;       //Timer0 mode 2
+ TMOD =0X01;         // TIMER0 MODE 1
+ TMOD = 0x10;        //Timer1 mode 1 

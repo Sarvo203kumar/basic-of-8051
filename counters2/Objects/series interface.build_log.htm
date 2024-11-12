@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: µVision V5.38.0.0
+Copyright (C) 2022 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: dddd ddd, dd, LIC=----
+ 
+Tool Versions:
+Toolchain:       PK51 Prof. Develpers Kit  Version: 9.60.7.0
+Toolchain Path:  C:\Keil_v5\C51\BIN
+C Compiler:      C51.exe V9.60.7.0
+Assembler:       A51.exe V8.2.7.0
+Linker/Locator:  BL51.exe V6.22.4.0
+Library Manager: LIB51.exe V4.30.1.0
+Hex Converter:   OH51.exe V2.7.0.0
+CPU DLL:         S8051.DLL V3.125.1.0
+Dialog DLL:      DP51.DLL V2.69.0.0 
+<h2>Project:</h2>
+C:\Users\HP\Desktop\8051\series interface.uvproj
+Project File Date:  11/18/2023
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling trans.c...
+serial\trans.c(1): warning C318: can't open file 'reg.51'
+serial\trans.c(5): error C202: 'SCON': undefined identifier
+serial\trans.c(6): error C202: 'TMOD': undefined identifier
+serial\trans.c(7): error C202: 'TH1': undefined identifier
+serial\trans.c(8): error C202: 'TR1': undefined identifier
+serial\trans.c(9): error C202: 'SBUF': undefined identifier
+serial\trans.c(9): error C101: '' ': invalid character constant
+serial\trans.c(9): error C101: '';': invalid character constant
+serial\trans.c(9): error C141: syntax error near '';', expected ';'
+serial\trans.c(10): error C141: syntax error near 'while', expected ';'
+serial\trans.c(11): error C202: 'TI': undefined identifier
+serial\trans.c(19): error C202: 'r': undefined identifier
+serial\trans.c(21): error C202: 'SBUF': undefined identifier
+serial\trans.c(22): error C202: 'TI': undefined identifier
+serial\trans.c(23): error C202: 'TI': undefined identifier
+compiling transm.c...
+serial\transm.c(1): warning C318: can't open file 'reg.51'
+serial\transm.c(2): warning C318: can't open file 'AT_serial.h'
+serial\transm.c(7): warning C206: 'Serial_Init': missing function-prototype
+serial\transm.c(7): error C267: 'Serial_Init': requires ANSI-style prototype
+compiling reciver.c...
+serial\reciver.c(1): warning C318: can't open file 'reg.51'
+serial\reciver.c(2): warning C318: can't open file 'AT_serial.h'
+serial\reciver.c(5): error C141: syntax error near '{', expected 'hdata'
+serial\reciver.c(6): error C141: syntax error near '9600', expected 'bit'
+serial\reciver.c(7): error C141: syntax error near '1', expected 'bit'
+serial\reciver.c(8): error C141: syntax error near '}', expected 'hdata'
+Target not created.
+Build Time Elapsed:  00:00:00
+</pre>
+</body>
+</html>

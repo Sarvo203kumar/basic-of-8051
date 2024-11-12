@@ -1,0 +1,15 @@
+#include <reg51.h>
+#include <stdio.h>
+sbit Led=P1^0;
+
+void main()
+ { 
+    
+    TMOD=0x04;
+	  TR0 =1;
+	  while(TL0<5);
+	  TR0=0;
+	  Led=0;
+  
+}
+

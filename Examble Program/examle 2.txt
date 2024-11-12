@@ -1,0 +1,8 @@
+#include<reg51.h>
+void main (void)
+{
+	char mynum []={0,+1,-1,+2,-2,+3,-3};
+	unsigned char z;
+	for(z=0;z<=8;z++)
+	P1=mynum[z];
+}

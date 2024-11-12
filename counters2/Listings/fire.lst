@@ -1,0 +1,60 @@
+C51 COMPILER V9.60.0.0   FIRE                                                              10/21/2023 10:54:42 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE FIRE
+OBJECT MODULE PLACED IN .\Objects\fire.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE counters2\fire.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Lis
+                    -tings\fire.lst) TABS(2) OBJECT(.\Objects\fire.obj)
+
+line level    source
+
+   1          #include<AT89x51.h>
+   2          #include"Atmal_lcd.h"
+*** WARNING C318 IN LINE 2 OF counters2\fire.c: can't open file 'Atmal_lcd.h'
+   3          sbit sw1 =P1^1;
+   4          sbit sw2 =P1^2;
+   5          void main()
+   6          {
+   7   1        unsigned char v1,v3,v4;
+   8   1        unsigned int v2;
+   9   1        
+  10   1        TMOD=0X60;
+  11   1        TL1=0X00;
+  12   1        TR1=1;
+  13   1        
+  14   1        Lcd8_Init();
+*** WARNING C206 IN LINE 14 OF counters2\fire.c: 'Lcd8_Init': missing function-prototype
+  15   1        Lcd8_Display(0x80,"  COUNTER       ",16);
+*** WARNING C206 IN LINE 15 OF counters2\fire.c: 'Lcd8_Display': missing function-prototype
+*** ERROR C267 IN LINE 15 OF counters2\fire.c: 'Lcd8_Display': requires ANSI-style prototype
+  16   1        Delay(65000);Delay(65000);
+  17   1        Lcd8_Command(0x01); 
+  18   1      
+  19   1        while(1)
+  20   1        {if (sw1 ==1)
+  21   2          v1=TL1;
+  22   2          v3=v1/10;
+  23   2          v4=v1%10;
+  24   2          Lcd8_Display(0x80,"COUNT           ",16);
+  25   2          Lcd8_Decimal3(0xcd,v3);
+  26   2          for(v2=0;v2<500;v2++);
+  27   2          Lcd8_Decimal3(0xc9,v4);
+  28   2          for(v2=0;v2<500;v2++);
+  29   2        }
+  30   1      }
+  31              
+  32              else if ( sw2 ==1)
+  33              {
+  34              v1=TL1;
+  35              v3=v1/10;
+  36              v4=v1%10;
+  37              Lcd8_Display(0x80,"COUNT           ",16);
+  38              Lcd8_Decimal3(0xcd,v3);
+  39              for(v2=0;v2<500;v2--);
+  40              Lcd8_Decimal3(0xc9,v4);
+  41              for(v2=0;v2<500;v2--);
+  42                  
+  43            }
+  44          }
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  1 ERROR(S)
