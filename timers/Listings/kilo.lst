@@ -1,0 +1,46 @@
+C51 COMPILER V9.60.0.0   KILO                                                              10/14/2023 12:28:18 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE KILO
+OBJECT MODULE PLACED IN .\Objects\kilo.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE kilo.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\kilo
+                    -.lst) TABS(2) OBJECT(.\Objects\kilo.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          sbit led = P0^0;
+   3          void time()
+   4          {
+   5   1        TH0 = 0xF8;
+   6   1        TL0 = 0xCC;
+   7   1        TR0 =1;
+   8   1        
+   9   1        while (TF0 == 0);
+  10   1        {
+  11   2          TR0 =0;
+  12   2          TF0 =0;
+  13   2        }
+  14   1      }
+  15          void main()
+  16          {
+  17   1        TMOD = 0x02;
+  18   1        led = 0;
+  19   1        time();
+  20   1        led = 1;
+  21   1        time();
+  22   1      } 
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     29    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,3 @@
+".\Objects\stepper.obj" 
+TO ".\Objects\stepper" 
+PRINT(".\Listings\stepper.m51")

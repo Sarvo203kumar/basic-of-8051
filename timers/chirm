@@ -1,0 +1,30 @@
+#include<AT89x52.h>
+sbit led = P0^0;
+sbit sw  = P0^1;
+
+void time()
+{
+	TH0 = 0x18;
+	TL0 = 0xCC;
+	TR0 =1;
+	
+	while (TF0 == 0);
+	{
+		TR0 =0;
+		TF0 =0;
+	}
+}
+
+void main()
+{
+  TMOD = 0x02;
+  if ( sw == 0);{
+	led = 0;
+	time();
+	}
+   else
+   {
+	led = 1;
+	time();
+	}
+}	
