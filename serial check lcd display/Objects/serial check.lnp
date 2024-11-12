@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\serial check program 1.obj" 
+TO ".\Objects\serial check" 
+PRINT(".\Listings\serial check.m51")

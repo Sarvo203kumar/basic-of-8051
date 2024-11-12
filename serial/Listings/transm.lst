@@ -1,0 +1,36 @@
+C51 COMPILER V9.60.7.0   TRANSM                                                            11/18/2023 14:03:34 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE TRANSM
+OBJECT MODULE PLACED IN .\Objects\transm.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE transm.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\tr
+                    -ansm.lst) TABS(2) OBJECT(.\Objects\transm.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include<AT_serial.h>
+   3          
+   4          
+   5          void main()
+   6          {
+   7   1        Serial_Init(9600);
+   8   1        Serial_Conout(" welcome ",9);
+   9   1        Serial_Conout(" bro ",5);
+  10   1        Serial_Out(0x09);Serial_Out(0X05);
+  11   1      }
+  12            
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    242    ----
+   CONSTANT SIZE    =     16    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

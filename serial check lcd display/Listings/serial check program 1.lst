@@ -1,0 +1,98 @@
+C51 COMPILER V9.60.7.0   SERIAL_CHECK_PROGRAM_1                                            11/18/2023 15:43:59 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SERIAL_CHECK_PROGRAM_1
+OBJECT MODULE PLACED IN .\Objects\serial check program 1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE serial check program 1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRI
+                    -NT(.\Listings\serial check program 1.lst) TABS(2) OBJECT(.\Objects\serial check program 1.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include<Atmal_lcd.h>
+   3          #include<AT_serial.h>
+   4          sbit gsen = P1^0;
+   5          sbit buzzer = P1^1;
+   6          sbit value = P1^2;
+   7          sbit ir = P1^3;
+   8          bit t;
+   9          void serial_inti();
+  10          void mob_mes();
+  11          void mob_mess();
+  12          
+  13          void main()
+  14          {
+  15   1        gsen = buzzer = value = ir = 0;
+  16   1        Lcd8_Init();
+  17   1        Lcd8_Display(0x80,"  checking      ",16);
+  18   1        Serial_Init(9600);
+  19   1        serial_inti();
+  20   1        Delay(65000);Delay(65000);
+  21   1        
+  22   1        while (1)
+  23   1        {
+  24   2          if ( gsen == 1)
+  25   2          {
+  26   3            buzzer == value == 1;
+*** WARNING C275 IN LINE 26 OF serial check program 1.c: expression with possibly no effect
+  27   3            Lcd8_Display(0x80,"  gas sensor    ",16);   
+  28   3            Lcd8_Display(0xc0,"  detecting     ",16);
+  29   3            mob_mes();  
+  30   3          }
+  31   2          if(ir == 1)
+  32   2          {
+  33   3            buzzer == value == 1;
+*** WARNING C275 IN LINE 33 OF serial check program 1.c: expression with possibly no effect
+  34   3            Lcd8_Display(0x80,"  ir  sensor    ",16);   
+  35   3            Lcd8_Display(0xc0,"  detecting     ",16);
+  36   3            mob_mess();
+  37   3          }
+  38   2          
+  39   2          else 
+  40   2          {
+  41   3            buzzer == value == 0;
+*** WARNING C275 IN LINE 41 OF serial check program 1.c: expression with possibly no effect
+  42   3            
+  43   3            Lcd8_Display(0x80,"    NO Sensor   ",16);
+  44   3            Lcd8_Display(0xc0,"   detecting    ",16);
+  45   3            
+  46   3          }
+  47   2        }
+  48   1      }
+  49           void serial_inti()
+  50           {
+  51   1       
+C51 COMPILER V9.60.7.0   SERIAL_CHECK_PROGRAM_1                                            11/18/2023 15:43:59 PAGE 2   
+
+  52   1        Serial_Conout("SERIAL TEST",11);
+  53   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  54   1        Delay(65000);Delay(65000);
+  55   1        
+  56   1       }
+  57           
+  58           void mob_mes()
+  59           {
+  60   1        Serial_Conout(" GAS SENSOR SENSED",18);
+  61   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  62   1        Delay(65000);Delay(65000);
+  63   1       }
+  64            void mob_mess()
+  65           {
+  66   1        Serial_Conout(" IR SENSOR SENSED",17);
+  67   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  68   1        Delay(65000);Delay(65000);
+  69   1       }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    901    ----
+   CONSTANT SIZE    =    151    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      32
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  3 WARNING(S),  0 ERROR(S)

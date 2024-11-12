@@ -1,0 +1,114 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    11/18/2023  16:40:03  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\trans.obj TO .\Objects\saerial PRINT (.\Listings\saerial.m51)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Objects\trans.obj (TRANS)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+
+
+LINK MAP OF MODULE:  .\Objects\saerial (TRANS)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         _DATA_GROUP_
+            IDATA   000CH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     0035H     UNIT         ?PR?_TRANS?TRANS
+            CODE    0835H     002DH     UNIT         ?C?LIB_CODE
+            CODE    0862H     0025H     UNIT         ?PR?MAIN?TRANS
+            CODE    0887H     0011H     UNIT         ?CO?TRANS
+            CODE    0898H     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   .\Objects\saerial (TRANS)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?TRANS
+
+?PR?MAIN?TRANS                 -----    -----
+  +--> ?CO?TRANS
+  +--> ?PR?_TRANS?TRANS
+
+?PR?_TRANS?TRANS               0008H    0004H
+  +--> ?CO?TRANS
+
+
+
+SYMBOL TABLE OF MODULE:  .\Objects\saerial (TRANS)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                  11/18/2023  16:40:03  PAGE 2
+
+
+  -------         MODULE        TRANS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:0098H.1       PUBLIC        TI
+  C:0862H         PUBLIC        main
+  C:0800H         PUBLIC        _trans
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  D:008DH         PUBLIC        TH1
+  B:0088H.6       PUBLIC        TR1
+  -------         PROC          MAIN
+  C:0862H         LINE#         4
+  C:0862H         LINE#         5
+  C:0862H         LINE#         6
+  C:0865H         LINE#         7
+  C:0868H         LINE#         8
+  C:086BH         LINE#         9
+  C:086DH         LINE#         10
+  C:0870H         LINE#         11
+  C:0873H         LINE#         12
+  C:0875H         LINE#         13
+  C:087EH         LINE#         14
+  -------         ENDPROC       MAIN
+  -------         PROC          _TRANS
+  D:0008H         SYMBOL        s
+  -------         DO            
+  D:000BH         SYMBOL        r
+  -------         ENDDO         
+  C:0800H         LINE#         17
+  C:0806H         LINE#         18
+  C:0806H         LINE#         20
+  C:0820H         LINE#         21
+  C:0820H         LINE#         22
+  C:082BH         LINE#         23
+  C:082EH         LINE#         24
+  C:0830H         LINE#         25
+  C:0834H         LINE#         26
+  -------         ENDPROC       _TRANS
+  -------         ENDMOD        TRANS
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0835H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 006BH BYTE ( 5%) *
+******************************************************************************
+
+Program Size: data=13.0 xdata=0 code=167
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

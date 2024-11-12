@@ -1,0 +1,77 @@
+C51 COMPILER V9.60.0.0   SEIAL                                                             11/18/2023 14:14:27 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SEIAL
+OBJECT MODULE PLACED IN .\Objects\seial.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE seial.c BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\seial.lst) TABS(2) OB
+                    -JECT(.\Objects\seial.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include"Atmal_lcd.h"
+   3          #include"AT_serial.h"
+   4          #define gas P1_0 
+   5          
+   6          void serial_inti();
+   7          void mob_mess();
+   8          
+   9           bit t;
+  10          void main()
+  11          {
+  12   1        
+  13   1         Lcd8_Init();
+  14   1         Delay(65000);
+  15   1         Lcd8_Display(0x80,"ALHOCOL DETECTNG",16);
+  16   1         Lcd8_Display(0xc0," FOR POLICE     ",16);
+  17   1         Serial_Init(9600);
+  18   1         Delay(65000); Delay(65000);
+  19   1         serial_inti();
+  20   1         Delay(65000); Delay(65000);
+  21   1         Lcd8_Command(0x01);
+  22   1         
+  23   1        while(1)
+  24   1        {
+  25   2        
+  26   2        if(!gas)
+  27   2        {
+  28   3        
+  29   3        Lcd8_Display(0xc0,"  ALHOCOL SENSED",16);
+  30   3        if(!t){t=1;mob_mess();}
+  31   3        }
+  32   2        else
+  33   2        {
+  34   3        t=0;
+  35   3        Lcd8_Display(0xc0,"   NOT SENSING  ",16);
+  36   3        SBUF =Receive;
+  37   3        Serial_Conout(SBUF);
+*** WARNING C209 IN LINE 37 OF seial.c: '_Serial_Conout': too few actual parameters
+*** ERROR C214 IN LINE 37 OF seial.c: illegal pointer conversion
+  38   3        //Lcd8_Decimal2(0x84,SBUF , 3);
+  39   3        }
+  40   2        
+  41   2        }
+  42   1      
+  43   1       }
+  44           void serial_inti()
+  45           {
+  46   1       
+  47   1        Serial_Conout("SERIAL TEST",11);
+  48   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  49   1        Delay(65000);Delay(65000);
+  50   1        
+  51   1       }
+  52           
+C51 COMPILER V9.60.0.0   SEIAL                                                             11/18/2023 14:14:27 PAGE 2   
+
+  53           void mob_mess()
+  54           {
+  55   1        Serial_Conout("ALHOCOL SENSED",14);
+  56   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  57   1        Delay(65000);Delay(65000);
+  58   1       }
+  59                               
+  60          
+  61            
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  1 ERROR(S)

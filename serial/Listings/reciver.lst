@@ -1,0 +1,26 @@
+C51 COMPILER V9.60.7.0   RECIVER                                                           11/18/2023 12:50:13 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE RECIVER
+OBJECT MODULE PLACED IN .\Objects\reciver.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE reciver.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\r
+                    -eciver.lst) TABS(2) OBJECT(.\Objects\reciver.obj)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include<AT_serial.h>
+   3          
+   4          void main();
+   5          {
+*** ERROR C141 IN LINE 5 OF reciver.c: syntax error near '{', expected 'hdata'
+   6            Serial_Init(9600);
+*** ERROR C141 IN LINE 6 OF reciver.c: syntax error near '9600', expected 'bit'
+*** ERROR C231 IN LINE 6 OF reciver.c: '_Serial_Init': redefinition
+   7            Receive(1);
+*** ERROR C141 IN LINE 7 OF reciver.c: syntax error near '1', expected 'bit'
+*** ERROR C231 IN LINE 7 OF reciver.c: '_Receive': redefinition
+   8          }
+*** ERROR C141 IN LINE 8 OF reciver.c: syntax error near '}', expected 'hdata'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  6 ERROR(S)
