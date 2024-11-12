@@ -1,0 +1,3 @@
+".\Objects\STARTUP.obj" 
+TO ".\Objects\loaad" 
+PRINT(".\Listings\loaad.m51")
