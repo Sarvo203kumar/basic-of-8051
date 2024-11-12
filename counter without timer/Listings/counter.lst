@@ -1,0 +1,74 @@
+C51 COMPILER V9.60.0.0   COUNTER                                                           10/21/2023 16:06:43 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE COUNTER
+OBJECT MODULE PLACED IN .\Objects\counter.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE counter.c BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\counter.lst) TABS(2
+                    -) OBJECT(.\Objects\counter.obj)
+
+line level    source
+
+   1          #include<AT89x51.h>
+   2          #include"Atmal_lcd.h"
+   3          sbit switch1=P3^0;
+   4          sbit switch2=P3^1;
+   5          sbit digit1=P2^0;
+   6          sbit digit2=P2^1;
+   7          int x=0,y,z;
+   8          void main()
+   9          {
+  10   1        //unsigned char disp [10]={0xc0,0xf9,0xa4,0xb0,0x99,0x92,0x82,0xf8,0x80,0x90};
+  11   1        switch1=1;
+  12   1        switch2=1;
+  13   1        digit1=1;
+  14   1        digit2=1;
+  15   1        
+  16   1        
+  17   1        Lcd8_Init();
+  18   1        Lcd8_Display(0x80,"  COUNTER       ",16);
+  19   1        Delay(65000);Delay(65000);
+  20   1        Lcd8_Command(0x01); 
+  21   1      
+  22   1        while(1)
+  23   1        {
+  24   2          if(switch1==0)
+  25   2        {
+  26   3          x++;
+  27   3          Delay(65000);
+  28   3        }
+  29   2        else if(switch2==0)
+  30   2        {
+  31   3          x--;
+  32   3          Delay(65000);
+  33   3        }
+  34   2          y=x/10;
+  35   2        digit1=0;
+  36   2        Delay(10);
+  37   2        digit1=1;
+  38   2          Lcd8_Display(0x80,"COUNT           ",16);
+  39   2          Lcd8_Decimal3(0xcd,y);
+  40   2          Delay(10);
+  41   2          
+  42   2        z=x%10;
+  43   2        Lcd8_Decimal3(0xc9,z);
+  44   2        digit2=0;
+  45   2        Delay(10);
+  46   2        digit2=1;
+  47   2        }
+  48   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    623    ----
+   CONSTANT SIZE    =     34    ----
+   XDATA SIZE       =   ----    ----
+C51 COMPILER V9.60.0.0   COUNTER                                                           10/21/2023 16:06:43 PAGE 2   
+
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      6      25
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,144 @@
+C51 COMPILER V9.60.0.0   PHONE                                                             03/20/2023 05:44:51 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE PHONE
+OBJECT MODULE PLACED IN phone.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE phone.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include<AT89x52.h>
+   2          #include"smcl_lcd8.h"
+   3          #include"AT_serial.h"
+   4          #define gas P1_0
+   5          #define relay P1_1
+   6          #define set P1_2
+   7          #define mov P1_3
+   8          #define inc P1_4
+   9          #define dec P1_5
+  10          #define ent P1_6 
+  11          unsigned int i=0,r=0,j;
+  12          unsigned char a[20],b[20];
+  13          void mob_inti();
+  14          void mob_mess();
+  15          void keypad();
+  16           bit t;
+  17          void main()
+  18          {
+  19   1        
+  20   1         Lcd8_Init();relay=0;
+  21   1         Delay(65000);
+  22   1         Lcd8_Display(0x80,"ALHOCOL DETECTNG",16);
+  23   1         Lcd8_Display(0xc0,"FOR POLICE      ",16);
+  24   1         Serial_Init(9600);
+  25   1         Delay(65000); Delay(65000);
+  26   1         Delay(65000); Delay(65000);
+  27   1         mob_inti();
+  28   1         Delay(65000); Delay(65000);
+  29   1         Lcd8_Display(0xc0,"                ",16);
+  30   1         
+  31   1        while(1)
+  32   1        {
+  33   2        
+  34   2        if(!gas)
+  35   2        {
+  36   3        relay=1;
+  37   3        Lcd8_Display(0xc0,"  ALHOCOL SENSED",16);
+  38   3          
+  39   3       if(!t)
+  40   3      {
+  41   4        
+  42   4      t=1;
+  43   4      mob_mess();
+  44   4      
+  45   4      }
+  46   3        }
+  47   2        else
+  48   2        {
+  49   3        t=0;relay=0;
+  50   3        Lcd8_Display(0xc0,"                ",16);
+  51   3        }
+  52   2        if(!set)
+  53   2      {
+  54   3        while(!set)
+  55   3      Delay(2000);
+C51 COMPILER V9.60.0.0   PHONE                                                             03/20/2023 05:44:51 PAGE 2   
+
+  56   3      Lcd8_Command(0x01);
+  57   3      keypad(); 
+  58   3      
+  59   3      }
+  60   2        }
+  61   1      
+  62   1       }
+  63           void mob_inti()
+  64           {
+  65   1       
+  66   1        Serial_Conout("AT",2);
+  67   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  68   1        Delay(65000);Delay(65000);
+  69   1        Serial_Conout("AT+CMGF=1",9);
+  70   1        Serial_Out(0x0d);Serial_Out(0x0a);
+  71   1        Delay(65000);Delay(65000);
+  72   1        
+  73   1        
+  74   1       }
+  75           void keypad()
+  76           {
+  77   1       Lcd8_Display(0x80," SET MOB NO:    ",16);
+  78   1       Delay(5000);
+  79   1       Lcd8_Command(0x0e);
+  80   1       while(ent)
+  81   1       {
+  82   2       Lcd8_Command(0xc0+r);
+  83   2       if(!mov){while(!mov);Delay(5000);r++;if(r>9)r=0;}
+  84   2       if(!set){while(!set);Delay(5000);r--;if(r<0)r=9;}
+  85   2       if(!inc){while(!inc);Delay(5000);i++;if(i>9)i=0;a[r]=i+0x30;Lcd8_Write(0xc0+r,a[r]);}
+  86   2        if(!dec){while(!dec);Delay(5000);i--;if(i<0)i=9;a[r]=i+0x30;Lcd8_Write(0xc0+r,a[r]);}
+  87   2       }
+  88   1       Lcd8_Command(0x0c);Lcd8_Command(0x01);Lcd8_Display(0x80,"ALHOCOL DETECTNG",16);
+  89   1       }
+  90           void mob_mess()
+  91           {
+  92   1       Delay(5000);
+  93   1       Serial_Conout("ATD",3);
+  94   1       for(j=0;j<10;j++)
+  95   1       Serial_Out(a[j]);
+  96   1       Serial_Out(';');
+  97   1       Serial_Out(0x0d);Serial_Out(0x0a);
+  98   1       Delay(65000); Delay(65000); Delay(65000);
+  99   1        Delay(65000); Delay(65000); Delay(65000);
+ 100   1        Delay(65000); Delay(65000); Delay(65000);
+ 101   1        Serial_Conout("ATH",3);Serial_Out(0x0d);Serial_Out(0x0a);
+ 102   1        Delay(65000); Delay(65000); Delay(65000);
+ 103   1        Serial_Conout("AT+CMGS=",8);
+ 104   1        Serial_Out('"');
+ 105   1         for(j=0;j<10;j++)
+ 106   1       Serial_Out(a[j]);
+ 107   1         Serial_Out('"');
+ 108   1          Serial_Out(0x0d);Serial_Out(0x0a);
+ 109   1       Delay(65000); Delay(65000);
+ 110   1       Serial_Conout("ALHOCOL SENSED",15);
+ 111   1       Serial_Out(0x1a);
+ 112   1       Delay(65000); Delay(65000); Delay(65000);
+ 113   1      
+ 114   1       }
+ 115                               
+ 116          
+ 117            
+C51 COMPILER V9.60.0.0   PHONE                                                             03/20/2023 05:44:51 PAGE 3   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1246    ----
+   CONSTANT SIZE    =    130    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     46      32
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =      1    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
