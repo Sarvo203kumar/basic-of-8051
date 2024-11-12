@@ -1,0 +1,13 @@
+C51 COMPILER V9.60.0.0   DELAY1                                                            09/09/2023 16:25:27 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DELAY1
+OBJECT MODULE PLACED IN .\Objects\delay1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE ..\delay\delay1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Li
+                    -stings\delay1.lst) TABS(2) OBJECT(.\Objects\delay1.obj)
+
+line level    source
+
+*** ERROR C318 OF ..\delay\delay1.c: can't open file '..\delay\delay1.c'
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  1 ERROR(S)

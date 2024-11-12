@@ -1,0 +1,10 @@
+BL51 BANKED LINKER/LOCATER V6.22.4.0                                                    11/04/2023  16:25:38  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.4.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\Objects\robo.obj TO .\Objects\robo PRINT (.\Listings\robo.m51)
+
+
+*** FATAL ERROR L256: MODULE CONTAINS DUPLICATE SEGMENT NAMES
+    SEGMENT: ?PR?_DELAY?ROBO
+    MODULE:  .\Objects\robo.obj (ROBO)
