@@ -1,0 +1,61 @@
+C51 COMPILER V9.60.7.0   SENSING1                                                          11/25/2023 13:57:49 PAGE 1   
+
+
+C51 COMPILER V9.60.7.0, COMPILATION OF MODULE SENSING1
+OBJECT MODULE PLACED IN .\Objects\sensing1.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE sensing1.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\Listings\
+                    -sensing1.lst) TABS(2) OBJECT(.\Objects\sensing1.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          #include<delay.h>
+   3          #include<Atmal_lcd.h>
+   4          
+   5          sbit sens = P1^1;
+   6          sbit motor = P2^0;
+   7          sbit motor2 = P2^1;
+   8          sbit key = P2^2;
+   9          
+  10          
+  11          int main()
+  12          {
+  13   1        motor=motor2 =0;
+  14   1        key = sens=0;
+  15   1        Lcd8_Init();
+  16   1        Lcd8_Display(0x80,"     test       ",16);
+  17   1        Lcd8_Display(0xc0,"                ",16);
+  18   1        Delay(6500);
+  19   1        while (key == 1)
+  20   1        {
+  21   2          
+  22   2          if ( sens==1)
+  23   2          {
+  24   3            Delay_ms(10000);
+  25   3            Lcd8_Display(0x80,"sensor sensing  ",16);
+  26   3            Lcd8_Display(0xc0,"                ",16);
+  27   3            motor =0;
+  28   3          }
+  29   2          else 
+  30   2          {
+  31   3            motor =1;
+  32   3            Lcd8_Display(0x80," Motor Smoth    ",16);
+  33   3            Lcd8_Display(0xc0,"   Running      ",16);
+  34   3          }
+  35   2        }}
+  36          
+*** WARNING C290 IN LINE 35 OF sensing1.c: missing return value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    700    ----
+   CONSTANT SIZE    =     85    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      33
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,154 @@
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2019 04:53:28 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN Main.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <AT89X52.h>
+   2          
+   3          #include "DHT.h"
+   4          #include "Delay.h"
+   5          #include "LCD.h"
+   6          #include "UART.h"
+   7          #include "ADC.h"
+   8          
+   9          #ifndef BuiltInLed
+  10          #define BuiltInLed
+  11          #define LedPort P0
+  12          #define LedPin 0
+  13          #endif
+  14          
+  15          #ifndef PWMConfig
+  16          #define PWMConfig
+  17          #define PWMPort P2
+  18          #define PWMPin 7
+  19          #define PWMInLine (PWMPort & (1 << PWMPin) ?1 :0)
+  20          #define PWMHigh() PWMPort |= (1 << PWMPin)
+  21          #define PWMLow() PWMPort &=~ (1 << PWMPin)
+  22          #endif
+  23          
+  24          unsigned int TimerTicks, LightIntensity, PulseWidth;
+  25          unsigned int TempVar;
+  26          unsigned char ProcVar;
+  27          
+  28          /*
+  29          void PulseWidthModulation(unsigned char PulseData)
+  30          {
+  31            unsigned int RequirePulseData;
+  32          //  TR2 = 0; //Disable Timer While Uploading New Values
+  33            T2CON &=~ (1 << 1); //Disable Counter and Activate Timer
+  34            T2MOD |= (1 << 1); //Enable Pin Output For Timer 2
+  35            RequirePulseData = PulseData * 256; //Convert 8 to 16Bit
+  36            RCAP2H = ((RequirePulseData >> 8) & 0xFF); //Load Higher 8 bit Value
+  37            RCAP2L = RequirePulseData & 0xFF; //Load Lower 8 Bit Value
+  38            TR2 = 1;
+  39          }
+  40          */
+  41          
+  42          void Timer2_ISR() interrupt 5
+  43          {
+  44   1        TR2 = 0; //Disable Timer While Updating Values
+  45   1        
+  46   1        if(PWMInLine)
+  47   1        {
+  48   2          PWMLow();
+  49   2          TempVar = (255 - PulseWidth);
+  50   2          TH2 = 0xFF - (TempVar >> 8) & 0xFF;
+  51   2          TL2 = 0xFF - (TempVar & 0xFF);
+  52   2        }
+  53   1        else
+  54   1        {
+  55   2          PWMHigh();
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2019 04:53:28 PAGE 2   
+
+  56   2          TempVar = PulseWidth * 1;
+  57   2          TH2 = 0xFF - (TempVar >> 8) & 0xFF;
+  58   2          TL2 = 0xFF - (TempVar & 0xFF);
+  59   2        }
+  60   1        
+  61   1        TF2 = 0;
+  62   1        TR2 = 1;
+  63   1        return ;
+  64   1      }
+  65              
+  66          void Timer0_ISR() interrupt 1
+  67          {
+  68   1        TimerTicks++;
+  69   1        TH0 = 0xFC;
+  70   1        TL0 = 0x63; // (3 Instruction Cycles used to load value)
+  71   1        TF0 = 0;
+  72   1        return ;
+  73   1      }
+  74          
+  75          void main()
+  76          {
+  77   1        PWMPort &=~ (1 << PWMPin);
+  78   1        LedPort &=~ (1 << LedPin);
+  79   1        
+  80   1        LCD_Initialize();
+  81   1        Serial_Initialize();
+  82   1        SPI_Initialize();
+  83   1        LCD_BackLight(1);
+  84   1        Serial_Enable(0);
+  85   1        
+  86   1        LCD_Disp(0x80,"UNIVERSAL BOARD ");
+  87   1        LCD_Disp(0xC0,"   AT89S52      ");
+  88   1        Delay(1); LCDClear();
+  89   1        
+  90   1        Serial_Write("Universal Board\r\n");
+  91   1        Serial_Write("    AT89S52    \r\n");
+  92   1        
+  93   1        TMOD |= (1 << 0); //Timer 0 16Bit Mode
+  94   1        TH0 = 0xFC; TL0 = 0x66; // 12/11059200 -> 1.0850 1000/1.0850 -> 920.8 -> 65535-921 -> 64614
+  95   1        EA = 1; //Enable Global Interrupt
+  96   1        ET0 = 1; //Enable Timer Interrupt
+  97   1        TR0 = 1; //Run Timer 0
+  98   1        
+  99   1        T2CON = 0x00; //Timer 2 16 Bit Mode (Default)
+ 100   1        T2MOD = 0x00; //No Output & No Counter
+ 101   1        TH2 = 0x00; //Load Null For PWM
+ 102   1        TL2 = 0x00; //Load Null For PWM
+ 103   1        ET2 = 1; //Enable Timer 2 Interrupt
+ 104   1        TR2 = 1; //Run Timer 2
+ 105   1        
+ 106   1        while(1)
+ 107   1        {
+ 108   2          LightIntensity = Read_ADC(0);
+ 109   2          PulseWidth = LightIntensity / 16;
+ 110   2      //    PulseWidthModulation(PulseWidth);
+ 111   2          
+ 112   2          LCD_Disp(0x80,"TEM:"); LCD_Decimal(0x84, Temperature, 3);
+ 113   2          LCD_Disp(0x88,"HUM:"); LCD_Decimal(0x8C, Humidity, 3);
+ 114   2          LCD_Disp(0xC0,"LDR:"); LCD_Decimal(0xC4, LightIntensity, 4);
+ 115   2          LCD_Disp(0xC9,"PWM:"); LCD_Decimal(0xCD, PulseWidth, 3);
+ 116   2          
+ 117   2          if(TimerTicks > 1499)
+C51 COMPILER V9.60.0.0   MAIN                                                              10/02/2019 04:53:28 PAGE 3   
+
+ 118   2          {
+ 119   3            LedPort |= (1 << LedPin); TR0 = 0; FetchDHT();
+ 120   3            Serial_Write("Temperature:"); Serial_Decimal(Temperature, 3); Serial_Write("\r\n");
+ 121   3            Serial_Write("   Humidity:"); Serial_Decimal(Humidity, 3); Serial_Write("\r\n");
+ 122   3            Serial_Write("  Intensity:"); Serial_Decimal(LightIntensity, 4); Serial_Write("\r\n");
+ 123   3            Serial_Write("Pulse Width:"); Serial_Decimal(PulseWidth, 3); Serial_Write("\r\n");
+ 124   3            LedPort &=~(1 << LedPin); TimerTicks = 0; TR0 = 1;
+ 125   3          }
+ 126   2        }
+ 127   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2117    ----
+   CONSTANT SIZE    =    145    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     24      48
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

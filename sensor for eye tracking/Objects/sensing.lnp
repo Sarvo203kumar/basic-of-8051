@@ -1,0 +1,4 @@
+".\Objects\STARTUP.obj",
+".\Objects\sensing1.obj" 
+TO ".\Objects\sensing" 
+PRINT(".\Listings\sensing.m51")
