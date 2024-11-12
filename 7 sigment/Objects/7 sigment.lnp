@@ -1,0 +1,3 @@
+".\Objects\7 sigment.obj" 
+TO ".\Objects\7 sigment" 
+PRINT(".\Listings\7 sigment.m51")
