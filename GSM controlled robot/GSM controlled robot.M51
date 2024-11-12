@@ -1,0 +1,487 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    11/18/2023  15:20:52  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE GSM controlled robot.obj TO GSM controlled robot
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  GSM controlled robot.obj (GSM_CONTROLLED_ROBOT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_STARTUP)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?COPY)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?SIDIV)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?UIDIV)
+
+
+LINK MAP OF MODULE:  GSM controlled robot (GSM_CONTROLLED_ROBOT)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0033H     UNIT         _DATA_GROUP_
+            DATA    003BH     000FH     UNIT         ?DT?_LCD_NUMBERXY?GSM_CONTROLLED_ROBOT
+            DATA    004AH     000DH     UNIT         ?DT?_LCD_NUMBER?GSM_CONTROLLED_ROBOT
+            DATA    0057H     0003H     UNIT         ?DT?_LCD_STRING?GSM_CONTROLLED_ROBOT
+            IDATA   005AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     07FDH                  *** GAP ***
+            CODE    0800H     01B7H     UNIT         ?PR?MAIN?GSM_CONTROLLED_ROBOT
+            CODE    09B7H     019AH     UNIT         ?C?LIB_CODE
+            CODE    0B51H     00C3H     UNIT         ?PR?_LCD_NUMBERXY?GSM_CONTROLLED_ROBOT
+            CODE    0C14H     00BCH     UNIT         ?PR?_LCD_NUMBER?GSM_CONTROLLED_ROBOT
+            CODE    0CD0H     0055H     UNIT         ?CO?GSM_CONTROLLED_ROBOT
+            CODE    0D25H     0028H     UNIT         ?PR?_LCD_STRINGXY?GSM_CONTROLLED_ROBOT
+            CODE    0D4DH     0027H     UNIT         ?PR?_LCD_DATA?GSM_CONTROLLED_ROBOT
+            CODE    0D74H     0023H     UNIT         ?PR?_LCD_STRING?GSM_CONTROLLED_ROBOT
+            CODE    0D97H     0020H     UNIT         ?PR?_DELAY_MS?GSM_CONTROLLED_ROBOT
+            CODE    0DB7H     001CH     UNIT         ?PR?_LCD_GOTOXY?GSM_CONTROLLED_ROBOT
+            CODE    0DD3H     0019H     UNIT         ?PR?LCD_INIT?GSM_CONTROLLED_ROBOT
+            CODE    0DECH     0014H     UNIT         ?PR?_LCD_CMD?GSM_CONTROLLED_ROBOT
+            CODE    0E00H     0013H     UNIT         ?PR?_TX_STRING?GSM_CONTROLLED_ROBOT
+            CODE    0E13H     0012H     UNIT         ?PR?LCD_ENABLE?GSM_CONTROLLED_ROBOT
+            CODE    0E25H     0012H     UNIT         ?PR?_TX_DATA?GSM_CONTROLLED_ROBOT
+            CODE    0E37H     000CH     UNIT         ?PR?UART_INIT?GSM_CONTROLLED_ROBOT
+            CODE    0E43H     000CH     UNIT         ?C_C51STARTUP
+            CODE    0E4FH     000AH     UNIT         ?PR?RX_DATA?GSM_CONTROLLED_ROBOT
+
+
+
+OVERLAY MAP OF MODULE:   GSM controlled robot (GSM_CONTROLLED_ROBOT)
+
+
+SEGMENT                                          DATA_GROUP 
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 2
+
+
+  +--> CALLED SEGMENT                          START    LENGTH
+--------------------------------------------------------------
+?C_C51STARTUP                                  -----    -----
+  +--> ?PR?MAIN?GSM_CONTROLLED_ROBOT
+
+?PR?MAIN?GSM_CONTROLLED_ROBOT                  0008H    002EH
+  +--> ?CO?GSM_CONTROLLED_ROBOT
+  +--> ?PR?LCD_INIT?GSM_CONTROLLED_ROBOT
+  +--> ?PR?UART_INIT?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_LCD_STRINGXY?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_LCD_DATA?GSM_CONTROLLED_ROBOT
+  +--> ?PR?RX_DATA?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_DELAY_MS?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_TX_DATA?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_TX_STRING?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_LCD_CMD?GSM_CONTROLLED_ROBOT
+
+?PR?LCD_INIT?GSM_CONTROLLED_ROBOT              -----    -----
+  +--> ?PR?_LCD_CMD?GSM_CONTROLLED_ROBOT
+
+?PR?_LCD_CMD?GSM_CONTROLLED_ROBOT              -----    -----
+  +--> ?PR?LCD_ENABLE?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_DELAY_MS?GSM_CONTROLLED_ROBOT
+
+?PR?LCD_ENABLE?GSM_CONTROLLED_ROBOT            -----    -----
+  +--> ?PR?_DELAY_MS?GSM_CONTROLLED_ROBOT
+
+?PR?_LCD_STRINGXY?GSM_CONTROLLED_ROBOT         0036H    0003H
+  +--> ?PR?_LCD_GOTOXY?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_LCD_DATA?GSM_CONTROLLED_ROBOT
+
+?PR?_LCD_GOTOXY?GSM_CONTROLLED_ROBOT           0039H    0002H
+  +--> ?PR?_LCD_CMD?GSM_CONTROLLED_ROBOT
+
+?PR?_LCD_DATA?GSM_CONTROLLED_ROBOT             -----    -----
+  +--> ?PR?LCD_ENABLE?GSM_CONTROLLED_ROBOT
+  +--> ?PR?_DELAY_MS?GSM_CONTROLLED_ROBOT
+
+?PR?_TX_DATA?GSM_CONTROLLED_ROBOT              -----    -----
+  +--> ?PR?_TX_STRING?GSM_CONTROLLED_ROBOT
+
+
+
+SYMBOL TABLE OF MODULE:  GSM controlled robot (GSM_CONTROLLED_ROBOT)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        GSM_CONTROLLED_ROBOT
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:0E19H         PUBLIC        lcd_enable
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  C:0B51H         PUBLIC        _lcd_numberxy
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  C:0C14H         PUBLIC        _lcd_number
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 3
+
+
+  C:0D25H         PUBLIC        _lcd_stringxy
+  C:0800H         PUBLIC        main
+  C:0D74H         PUBLIC        _lcd_string
+  C:0D54H         PUBLIC        _lcd_data
+  D:0099H         PUBLIC        SBUF
+  D:0098H         PUBLIC        SCON
+  D:0089H         PUBLIC        TMOD
+  C:0CFBH         SYMBOL        _?ix1000
+  C:0DB7H         PUBLIC        _lcd_gotoxy
+  C:0D00H         SYMBOL        _?ix1001
+  C:0D05H         SYMBOL        _?ix1002
+  C:0D0DH         SYMBOL        _?ix1003
+  C:0D15H         SYMBOL        _?ix1004
+  C:0D1DH         SYMBOL        _?ix1005
+  C:0DECH         PUBLIC        _lcd_cmd
+  C:0DD3H         PUBLIC        lcd_init
+  D:008DH         PUBLIC        TH1
+  C:0D97H         PUBLIC        _delay_ms
+  C:0E37H         PUBLIC        uart_init
+  B:0088H.6       PUBLIC        TR1
+  C:0E4FH         PUBLIC        rx_data
+  C:0E00H         PUBLIC        _tx_string
+  B:0090H.2       PUBLIC        lcd_en
+  C:0E2FH         PUBLIC        _tx_data
+  B:0090H.0       PUBLIC        lcd_rs
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        n
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0002H         SYMBOL        j
+  -------         ENDDO         
+  C:0D97H         LINE#         23
+  C:0D97H         LINE#         24
+  C:0D97H         LINE#         26
+  C:0DA1H         LINE#         27
+  C:0DB6H         LINE#         28
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          L?0106
+  -------         ENDPROC       L?0106
+  -------         PROC          LCD_ENABLE
+  C:0E19H         LINE#         30
+  C:0E19H         LINE#         31
+  C:0E19H         LINE#         32
+  C:0E1BH         LINE#         33
+  C:0E22H         LINE#         34
+  C:0E24H         LINE#         35
+  -------         ENDPROC       LCD_ENABLE
+  -------         PROC          _LCD_CMD
+  D:0001H         SYMBOL        cmd
+  C:0DECH         LINE#         37
+  C:0DEEH         LINE#         38
+  C:0DEEH         LINE#         39
+  C:0DF0H         LINE#         40
+  C:0DF1H         LINE#         41
+  C:0DF4H         LINE#         42
+  C:0DF6H         LINE#         43
+  C:0DF9H         LINE#         44
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 4
+
+
+  -------         ENDPROC       _LCD_CMD
+  -------         PROC          L?0105
+  -------         ENDPROC       L?0105
+  -------         PROC          _LCD_DATA
+  D:0001H         SYMBOL        ascii
+  C:0D54H         LINE#         47
+  C:0D56H         LINE#         48
+  C:0D56H         LINE#         49
+  C:0D58H         LINE#         50
+  C:0D5FH         LINE#         51
+  C:0D62H         LINE#         52
+  C:0D6AH         LINE#         53
+  C:0D6DH         LINE#         54
+  -------         ENDPROC       _LCD_DATA
+  -------         PROC          LCD_INIT
+  C:0DD3H         LINE#         57
+  C:0DD3H         LINE#         58
+  C:0DD3H         LINE#         60
+  C:0DD8H         LINE#         62
+  C:0DDDH         LINE#         64
+  C:0DE2H         LINE#         66
+  C:0DE7H         LINE#         68
+  -------         ENDPROC       LCD_INIT
+  -------         PROC          _LCD_GOTOXY
+  D:0039H         SYMBOL        row
+  D:003AH         SYMBOL        column
+  C:0DB7H         LINE#         72
+  C:0DBBH         LINE#         73
+  C:0DBBH         LINE#         74
+  C:0DBEH         LINE#         75
+  C:0DBEH         LINE#         76
+  C:0DC2H         LINE#         77
+  C:0DC4H         LINE#         78
+  C:0DCAH         LINE#         79
+  C:0DCAH         LINE#         80
+  C:0DD2H         LINE#         81
+  C:0DD2H         LINE#         82
+  -------         ENDPROC       _LCD_GOTOXY
+  -------         PROC          _LCD_NUMBER
+  D:004AH         SYMBOL        val
+  D:004CH         SYMBOL        field_length
+  -------         DO            
+  D:004EH         SYMBOL        str
+  D:0053H         SYMBOL        i
+  D:0055H         SYMBOL        j
+  -------         ENDDO         
+  C:0C14H         LINE#         83
+  C:0C1CH         LINE#         84
+  C:0C1CH         LINE#         85
+  C:0C2FH         LINE#         86
+  C:0C3AH         LINE#         87
+  C:0C40H         LINE#         88
+  C:0C40H         LINE#         89
+  C:0C52H         LINE#         90
+  C:0C61H         LINE#         91
+  C:0C69H         LINE#         92
+  C:0C6BH         LINE#         93
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 5
+
+
+  C:0C75H         LINE#         94
+  C:0C8CH         LINE#         96
+  C:0C98H         LINE#         98
+  C:0CA6H         LINE#         99
+  C:0CB9H         LINE#         100
+  C:0CB9H         LINE#         101
+  C:0CC5H         LINE#         102
+  C:0CCFH         LINE#         103
+  -------         ENDPROC       _LCD_NUMBER
+  -------         PROC          _LCD_STRING
+  D:0057H         SYMBOL        str
+  C:0D74H         LINE#         105
+  C:0D7AH         LINE#         106
+  C:0D7AH         LINE#         109
+  C:0D86H         LINE#         110
+  C:0D86H         LINE#         111
+  C:0D89H         LINE#         112
+  C:0D94H         LINE#         113
+  C:0D96H         LINE#         114
+  -------         ENDPROC       _LCD_STRING
+  -------         PROC          _LCD_STRINGXY
+  D:0007H         SYMBOL        row
+  D:0005H         SYMBOL        col
+  D:0036H         SYMBOL        lcd_string
+  C:0D25H         LINE#         116
+  C:0D2BH         LINE#         117
+  C:0D2BH         LINE#         118
+  C:0D2EH         LINE#         119
+  C:0D39H         LINE#         120
+  C:0D39H         LINE#         121
+  C:0D4AH         LINE#         122
+  C:0D4CH         LINE#         123
+  -------         ENDPROC       _LCD_STRINGXY
+  -------         PROC          _LCD_NUMBERXY
+  D:003BH         SYMBOL        row
+  D:003CH         SYMBOL        col
+  D:003DH         SYMBOL        val
+  D:003FH         SYMBOL        field_length
+  -------         DO            
+  D:0041H         SYMBOL        str
+  D:0046H         SYMBOL        i
+  D:0048H         SYMBOL        j
+  -------         ENDDO         
+  C:0B51H         LINE#         124
+  C:0B59H         LINE#         125
+  C:0B59H         LINE#         126
+  C:0B6CH         LINE#         127
+  C:0B77H         LINE#         129
+  C:0B7EH         LINE#         131
+  C:0B84H         LINE#         132
+  C:0B84H         LINE#         133
+  C:0B96H         LINE#         134
+  C:0BA5H         LINE#         135
+  C:0BADH         LINE#         136
+  C:0BAFH         LINE#         137
+  C:0BB9H         LINE#         138
+  C:0BD0H         LINE#         140
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 6
+
+
+  C:0BDCH         LINE#         142
+  C:0BEAH         LINE#         143
+  C:0BFDH         LINE#         144
+  C:0BFDH         LINE#         145
+  C:0C09H         LINE#         146
+  C:0C13H         LINE#         147
+  -------         ENDPROC       _LCD_NUMBERXY
+  -------         PROC          UART_INIT
+  C:0E37H         LINE#         2
+  C:0E37H         LINE#         3
+  C:0E37H         LINE#         4
+  C:0E3AH         LINE#         5
+  C:0E3DH         LINE#         6
+  C:0E40H         LINE#         7
+  C:0E42H         LINE#         8
+  -------         ENDPROC       UART_INIT
+  C:0E28H         SYMBOL        L?0104
+  -------         PROC          L?0103
+  -------         ENDPROC       L?0103
+  C:0E28H         SYMBOL        L?0104
+  -------         PROC          _TX_DATA
+  D:0007H         SYMBOL        serialdata
+  C:0E2FH         LINE#         9
+  C:0E2FH         LINE#         10
+  C:0E2FH         LINE#         11
+  C:0E31H         LINE#         12
+  C:0E34H         LINE#         13
+  C:0E36H         LINE#         14
+  -------         ENDPROC       _TX_DATA
+  -------         PROC          RX_DATA
+  C:0E4FH         LINE#         15
+  C:0E4FH         LINE#         16
+  C:0E4FH         LINE#         17
+  C:0E52H         LINE#         18
+  C:0E54H         LINE#         19
+  C:0E58H         LINE#         21
+  -------         ENDPROC       RX_DATA
+  -------         PROC          _TX_STRING
+  D:0001H         SYMBOL        str
+  C:0E00H         LINE#         22
+  C:0E00H         LINE#         23
+  C:0E00H         LINE#         24
+  C:0E06H         LINE#         25
+  C:0E06H         LINE#         26
+  C:0E09H         LINE#         27
+  C:0E10H         LINE#         28
+  C:0E12H         LINE#         30
+  -------         ENDPROC       _TX_STRING
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        temp
+  D:0009H         SYMBOL        i
+  D:000AH         SYMBOL        j
+  D:000BH         SYMBOL        k
+  D:000CH         SYMBOL        l
+  D:000DH         SYMBOL        m
+  D:000EH         SYMBOL        read
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 7
+
+
+  D:0016H         SYMBOL        a
+  D:001EH         SYMBOL        b
+  D:0026H         SYMBOL        c
+  D:002EH         SYMBOL        d
+  -------         ENDDO         
+  C:0800H         LINE#         8
+  C:0800H         LINE#         9
+  C:0800H         LINE#         11
+  C:084CH         LINE#         12
+  C:084FH         LINE#         13
+  C:0852H         LINE#         14
+  C:0855H         LINE#         15
+  C:0860H         LINE#         16
+  C:086DH         LINE#         18
+  C:086DH         LINE#         19
+  C:086DH         LINE#         20
+  C:0870H         LINE#         21
+  C:0877H         LINE#         22
+  C:0880H         LINE#         24
+  C:0889H         LINE#         26
+  C:0892H         LINE#         27
+  C:0892H         LINE#         28
+  C:089BH         LINE#         29
+  C:089BH         LINE#         30
+  C:08A4H         LINE#         31
+  C:08A4H         LINE#         32
+  C:08ADH         LINE#         33
+  C:08ADH         LINE#         34
+  C:08B6H         LINE#         35
+  C:08B6H         LINE#         36
+  C:08BFH         LINE#         37
+  C:08C4H         LINE#         38
+  C:08CAH         LINE#         39
+  C:08D0H         LINE#         40
+  C:08D0H         LINE#         41
+  C:08D3H         LINE#         42
+  C:08D7H         LINE#         43
+  C:08D7H         LINE#         44
+  C:08DAH         LINE#         45
+  C:08E1H         LINE#         46
+  C:08E6H         LINE#         47
+  C:08E6H         LINE#         48
+  C:08E9H         LINE#         50
+  C:08F2H         LINE#         51
+  C:08FBH         LINE#         52
+  C:0904H         LINE#         54
+  C:0911H         LINE#         55
+  C:0911H         LINE#         56
+  C:091BH         LINE#         57
+  C:091FH         LINE#         58
+  C:0924H         LINE#         59
+  C:0932H         LINE#         60
+  C:0932H         LINE#         61
+  C:0935H         LINE#         62
+  C:0939H         LINE#         64
+  C:0947H         LINE#         65
+  C:0947H         LINE#         66
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 8
+
+
+  C:0958H         LINE#         67
+  C:095AH         LINE#         68
+  C:0963H         LINE#         69
+  C:0965H         LINE#         70
+  C:0975H         LINE#         71
+  C:0977H         LINE#         72
+  C:0987H         LINE#         73
+  C:0989H         LINE#         74
+  C:098DH         LINE#         76
+  C:0993H         LINE#         77
+  C:0993H         LINE#         78
+  C:0996H         LINE#         79
+  C:0996H         LINE#         80
+  C:099CH         LINE#         81
+  C:099CH         LINE#         82
+  C:099FH         LINE#         83
+  C:099FH         LINE#         84
+  C:09A5H         LINE#         85
+  C:09A5H         LINE#         86
+  C:09A8H         LINE#         87
+  C:09A8H         LINE#         88
+  C:09B1H         LINE#         89
+  C:09B1H         LINE#         90
+  C:09B4H         LINE#         91
+  C:09B4H         LINE#         93
+  C:09B4H         LINE#         95
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        GSM_CONTROLLED_ROBOT
+
+  -------         MODULE        ?C?COPY
+  C:0A87H         PUBLIC        ?C?COPY
+  -------         ENDMOD        ?C?COPY
+
+  -------         MODULE        ?C?CLDPTR
+  C:0AADH         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?SIDIV
+  C:0AC6H         PUBLIC        ?C?SIDIV
+  -------         ENDMOD        ?C?SIDIV
+
+  -------         MODULE        ?C?UIDIV
+  C:0AFCH         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_NUMBER?GSM_CONTROLLED_ROBOT
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_STRING?GSM_CONTROLLED_ROBOT
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_NUMBERXY?GSM_CONTROLLED_ROBOT
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 04B3H BYTE (58%) *
+******************************************************************************
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  11/18/2023  15:20:52  PAGE 9
+
+
+
+Program Size: data=91.0 xdata=0 code=1628
+LINK/LOCATE RUN COMPLETE.  3 WARNING(S),  0 ERROR(S)

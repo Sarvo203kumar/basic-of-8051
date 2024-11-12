@@ -1,0 +1,120 @@
+C51 COMPILER V9.60.0.0   GSM_CONTROLLED_ROBOT                                              11/18/2023 15:20:52 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE GSM_CONTROLLED_ROBOT
+OBJECT MODULE PLACED IN GSM controlled robot.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE GSM controlled robot.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          
+   2          #include<reg51.h>
+   3          #include"lcd.h"
+   4          #include"uart.h"
+   5          
+   6          #define robot P2
+   7          
+   8          void main()
+   9          {
+  10   1        unsigned char temp,i,j,k,l,m;
+  11   1        unsigned char read[8],a[8]="forward ",b[8]="backward",c[8]="left    ",d[8]="right   ";
+  12   1        lcd_init();
+  13   1        uart_init();
+  14   1        robot = 0;
+  15   1        lcd_stringxy(0,0,"GSM Controlled");
+  16   1        lcd_stringxy(1,0,"Robot");
+  17   1        
+  18   1        while(1)
+  19   1        {
+  20   2          lcd_data(read[i]);
+  21   2          j=0,l=0,m=0;
+  22   2          while(rx_data()!=0x0d);
+  23   2          
+  24   2            while(rx_data()!=0x0a);
+  25   2            
+  26   2              if(rx_data()=='+')
+  27   2              {
+  28   3                if(rx_data()=='C')
+  29   3                {
+  30   4                  if(rx_data()=='M')
+  31   4                  {
+  32   5                    if(rx_data()=='T')
+  33   5                    {
+  34   6                      if(rx_data()=='I')
+  35   6                      {
+  36   7                        while(rx_data()!=',');
+  37   7                        temp=rx_data();
+  38   7                        delay_ms(10);
+  39   7                        tx_string("at");
+  40   7                        tx_data(0x0d);
+  41   7                        tx_data(0x0a);
+  42   7                        tx_string("at+cmgf=1");
+  43   7                        tx_data(0x0d);
+  44   7                        tx_data(0x0a);
+  45   7                        tx_string("at+cmgr=");
+  46   7                        tx_data(temp);
+  47   7                        tx_data(0x0d);
+  48   7                        tx_data(0x0a);
+  49   7      
+  50   7                        while(rx_data()!=0x0a);
+  51   7                        while(rx_data()!=0x0a);
+  52   7                        while(rx_data()!=0x0a);
+  53   7                        
+  54   7                        for(i=0;i<8;i++)
+  55   7                        {
+C51 COMPILER V9.60.0.0   GSM_CONTROLLED_ROBOT                                              11/18/2023 15:20:52 PAGE 2   
+
+  56   8                          read[i]=rx_data();
+  57   8                        }
+  58   7                        lcd_cmd(0xc0);
+  59   7                        for(i=0;i<8;i++)
+  60   7                        {
+  61   8                          lcd_data(read[i]);
+  62   8                        }
+  63   7                        
+  64   7                        for(i=0;i<8;i++)
+  65   7                        {
+  66   8                          if(read[i]==a[i])
+  67   8                          j++;
+  68   8                          if(read[i]==b[i])
+  69   8                          k++;
+  70   8                          if(read[i]==c[i])
+  71   8                          l++;
+  72   8                          if(read[i]==d[i])
+  73   8                          m++;
+  74   8                        }
+  75   7                        
+  76   7                        if(j==8)
+  77   7                        {
+  78   8                          robot=0x0a;
+  79   8                        }
+  80   7                        if(k==8)
+  81   7                        {
+  82   8                          robot=0x05;
+  83   8                        }
+  84   7                        if(l==8)
+  85   7                        {
+  86   8                          robot=0x02;
+  87   8                        }
+  88   7                        if(m==8)
+  89   7                        {
+  90   8                          robot=0x08;
+  91   8                        }   
+  92   7                        
+  93   7                      }}}}}
+  94   2          
+  95   2      } }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1118    ----
+   CONSTANT SIZE    =     85    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      82
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

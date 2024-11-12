@@ -1,0 +1,46 @@
+at
+
+OK
+at+cmgf=1
+
+OK
+
++CMTI: "SM",3
+at+cmgr=3
+
++CMGR: "REC UNREAD","MD-WAYSMS",,"13/05/20,15:31:48+34"
+Electronics Hub 
+
++CMTI: "SM",2
+at+cmgr=2
+
++CMGR: "REC UNREAD","MD-WAYSMS",,"13/05/20,15:31:48+34"
+backward 
+
++CMTI: "SM",1
+at+cmgr=1
+
++CMGR: "REC UNREAD","MD-WAYSMS",,"13/05/20,15:31:48+34"
+left     
+
++CMTI: "SM",5
+at+cmgr=5
+
++CMGR: "REC UNREAD","MD-WAYSMS",,"13/05/20,15:31:48+34"
+right           
+
++CMTI: "SM",3
+at+cmgr=3
+
+OK
+at+cmgd=1
+
+OK
+
++CMTI: "SM",1
+at+cmgr=1
+
++CMGR: "REC UNREAD","MD-WAYSMS",,"13/05/20,15:32:56+34"
+
+
+OK
