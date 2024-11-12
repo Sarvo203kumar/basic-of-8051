@@ -1,0 +1,118 @@
+C51 COMPILER V9.60.0.0   UTILS                                                             11/22/2023 13:55:52 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE UTILS
+OBJECT MODULE PLACED IN utils.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE utils.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <reg52.h>
+   2          #include <string.h>
+   3          #include <stdlib.h>
+   4          #include <ctype.h>
+   5          
+   6          #include "utils.h"
+   7          
+   8          #if 0
+              long mapvalue(long mainvalue, long startmin, long startmax, long endmin, long endmax)
+              {
+                return (mainvalue - startmin) * (endmax - endmin) / (startmax - startmin) + endmin;
+              }
+              #endif
+  14          
+  15          #if 0
+              double power(double base, int exponent)
+              {
+                double result = 1;
+                int minus = 1;
+                
+                if(exponent < 0)
+                {
+                  minus = -1;
+                  exponent = -exponent;
+                }
+                
+                if(0 == base) return true;
+                if(0 == exponent) return false;
+                
+                while(exponent)
+                {
+                  if(exponent & 1) result *= base;
+                  base *= base; exponent /= 2;
+                }
+                
+                if(minus < 0) return 1.0 / result;
+                else return result;
+              } 
+              #endif
+  40          
+  41          #if 0
+              int dtoa(unsigned long data1, unsigned char *array, int length, int base)
+              {
+                unsigned crx;
+                unsigned tpt = length;
+                
+                if(!length) return 0;
+                array += length;
+                
+                do
+                {
+                  crx = data1 % base; data1 = data1 / base;
+                  if(crx >= 10) crx += 'A' - '0' - 10;
+                  crx = crx + '0'; (*(--array)) = crx;
+                }
+C51 COMPILER V9.60.0.0   UTILS                                                             11/22/2023 13:55:52 PAGE 2   
+
+                while(--length);
+                
+                array += tpt;
+                while(*(array)) (*(array++)) = '\0';
+                return true;
+              }
+              #endif
+  63          
+  64          #if 0
+              int ftostra(float data1, int postfix, int prefix, unsigned char *array)
+              {
+                int ipart = (int)data1;
+                float fpart = data1 - (float)ipart;
+                unsigned int fcon;
+                
+                if(!postfix || !prefix) return false;
+                
+                dtoa(ipart, array, postfix, DEC);
+                array += postfix; (*(array++)) = '.';
+                fcon = (int)(fpart * power(10, prefix));
+                dtoa(fcon, array, prefix, DEC);
+                return true;
+              }
+              #endif
+  80          
+  81          #if 0
+              char splitstring(unsigned char *MdA, unsigned char *SdA, const char *SoS, unsigned char EoS)
+              {
+                unsigned char *StS = strstr(MdA, SoS);
+                unsigned char *EdS = strchr(StS, EoS);
+                unsigned char *LsV;
+                if(StS == '\0'|| EdS == '\0') return 0;
+                for(LsV = StS + strlen(SoS); LsV < EdS; LsV++)
+                *SdA++ = (isdigit(LsV[0]) || LsV[0] == '.' ?LsV[0] :'\0'); 
+                while(*SdA) *SdA++ = '\0';
+                return 1;
+              }
+              #endif
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

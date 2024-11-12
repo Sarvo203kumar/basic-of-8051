@@ -1,0 +1,144 @@
+C51 COMPILER V9.60.0.0   LCD                                                               11/22/2023 13:55:51 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE LCD
+OBJECT MODULE PLACED IN lcd.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE lcd.c BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          #include <AT89x52.h>
+   2          #include <intrins.h>
+   3          #include <string.h>
+   4          
+   5          #include "utils.h"
+   6          #include "lcd.h"
+   7          
+   8          sbit rs = P3^5;
+   9          sbit en = P3^4;
+  10          sbit d4 = P1^4;
+  11          sbit d5 = P1^5;
+  12          sbit d6 = P1^6;
+  13          sbit d7 = P1^7;
+  14          
+  15          void lcd_initialize()
+  16          {
+  17   1        rs = 1;
+  18   1        en = 1;
+  19   1        d4 = 1;
+  20   1        d5 = 1;
+  21   1        d6 = 1;
+  22   1        d7 = 1;
+  23   1        delay_ms(250);
+  24   1        
+  25   1        lcd_command(0x03); delay_ms(5);
+  26   1        lcd_command(0x03); delay_ms(5);
+  27   1        lcd_command(0x03); delay_us(150);
+  28   1        
+  29   1        lcd_command(return_home); delay_us(150);
+  30   1        lcd_command(four_bit | two_line | char_set1); delay_us(150);
+  31   1        lcd_command(display_on | cursor_off | blink_off); delay_us(150);
+  32   1        lcd_command(shift_disable | cur_increment); delay_us(150);
+  33   1        lcd_function(clear_display);
+  34   1      }
+  35          
+  36          void lcd_command(unsigned char command)
+  37          {
+  38   1        rs = 0;
+  39   1        lcd_allort(command & 0xF0); lcd_enable();
+  40   1        lcd_allort((command << 4) & 0xF0); lcd_enable();
+  41   1      }
+  42          
+  43          void lcd_function(unsigned char command)
+  44          {
+  45   1        lcd_command(command);
+  46   1        delay_ms(50);
+  47   1      }
+  48          
+  49          void lcd_write(unsigned char command, unsigned char data1)
+  50          {
+  51   1        lcd_command(command);
+  52   1        rs = 1;
+  53   1        lcd_allort(data1 & 0xF0); lcd_enable();
+  54   1        lcd_allort((data1 << 4) & 0xF0); lcd_enable();
+  55   1      }
+C51 COMPILER V9.60.0.0   LCD                                                               11/22/2023 13:55:51 PAGE 2   
+
+  56          
+  57          void lcd_writeln(unsigned char command, const char *data1,
+  58          unsigned char length)
+  59          {
+  60   1        while(length --> 0)
+  61   1        lcd_write(command++, (*data1 ?*data1++ :' '));
+  62   1      }
+  63          
+  64          void lcd_disp(unsigned char command, const char *data1)
+  65          {
+  66   1        while(*data1)
+  67   1        lcd_write(command++, *data1++);
+  68   1      }
+  69          
+  70          #if 0
+              void lcd_decimal(unsigned char command, unsigned long data1, int length, int base)
+              {
+                unsigned char localarray[10];
+                dtoa(data1, (char*)localarray, length, base);
+                lcd_disp(command, (char*)localarray);
+              }
+              #endif 
+  78          
+  79          #if 0
+              void lcd_float(unsigned char command, float data1, int postfix, int prefix)
+              {
+                unsigned char localarray[10];
+                ftostra(data1, postfix, prefix, (char*)localarray);
+                lcd_disp(command, (char*)localarray);
+              }
+              #endif
+  87          
+  88          #if 0
+              void lcd_custom(unsigned char location, const char *data1)
+              {
+                unsigned char localvariable = 0;
+                location *= 8;
+                for(localvariable = 0; localvariable < 8; localvariable++)
+                lcd_write((cgram_address + location + localvariable), data1[localvariable]);
+              }
+              
+              void lcd_char(unsigned char command, unsigned char location, const char *data1)
+              {
+                lcd_custom(location, data1);
+                lcd_write(command, location);
+              }
+              #endif
+ 103          
+ 104          void lcd_allort(unsigned char data1)
+ 105          {
+ 106   1        if(data1 & 0x10) d4 = 1; else d4 = 0;
+ 107   1        if(data1 & 0x20) d5 = 1; else d5 = 0;
+ 108   1        if(data1 & 0x40) d6 = 1; else d6 = 0;
+ 109   1        if(data1 & 0x80) d7 = 1; else d7 = 0;
+ 110   1      } 
+ 111          
+ 112          void lcd_enable(void)
+ 113          {
+ 114   1        en = 0; _nop_(); _nop_();
+ 115   1        en = 1; _nop_(); _nop_();
+ 116   1        en = 0; delay_us(100);
+ 117   1      } 
+C51 COMPILER V9.60.0.0   LCD                                                               11/22/2023 13:55:51 PAGE 3   
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    521    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      20
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

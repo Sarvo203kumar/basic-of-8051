@@ -1,0 +1,6 @@
+"lcd.obj",
+"uart.obj",
+"utils.obj",
+"main.obj" 
+TO "project" 
+RAMSIZE(256) 
